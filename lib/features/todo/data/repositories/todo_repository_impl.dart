@@ -1,11 +1,17 @@
+import 'package:flutter_clean_architecture/features/todo/data/database/todo_remote_database.dart';
 import 'package:flutter_clean_architecture/features/todo/domain/entities/todo.dart';
 import 'package:flutter_clean_architecture/features/todo/domain/repositories/todo_repository.dart';
 
 class TodoRepositoryImpl implements TodoRepository {
+  final TodoRemoteDatabase remoteDatabase;
+  TodoRepositoryImpl({
+    required this.remoteDatabase,
+  });
+
   @override
   Future<Todo> add(Todo todo) async {
-    // TODO: implement add
-    throw UnimplementedError();
+    final results = await remoteDatabase.addTodo(todo);
+    return results;
   }
 
   @override
